@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Compile Booking App",
+        "type": "shell",
+        "command": "javac",
+        "args": [
+          "-cp",
+          "lib/*",
+          "-d",
+          "bin",
+          "src/booking.java"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": []
+      }
+    ]
+  }
+  
