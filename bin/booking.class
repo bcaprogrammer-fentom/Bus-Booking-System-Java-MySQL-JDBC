@@ -1,0 +1,256 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+import com.toedter.calendar.JCalendar;
+import java.awt.Font;
+import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.io.FileWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+public class booking extends JFrame {
+   Connection c;
+   PreparedStatement p;
+   ResultSet r;
+   private JButton b1;
+   private JButton b2;
+   private JButton b3;
+   private JComboBox c1;
+   private JComboBox c2;
+   private JComboBox c3;
+   private JCalendar ca1;
+   private JLabel jLabel1;
+   private JLabel jLabel2;
+   private JLabel jLabel3;
+   private JLabel jLabel4;
+   private JLabel jLabel5;
+   private JLabel jLabel6;
+   private JLabel jLabel7;
+   private JLabel jLabel8;
+   private JLabel jLabel9;
+   private JScrollPane jScrollPane1;
+   public JTextField t;
+   private JTextField t1;
+   private JTextArea t2;
+   private JTextField t3;
+
+   public booking() {
+      this.initComponents();
+      Date var1 = new Date();
+      this.ca1.getDayChooser().setMinSelectableDate(var1);
+      this.connect();
+   }
+
+   public void connect() {
+      try {
+         Class.forName("com.mysql.cj.jdbc.Driver");
+
+         try {
+            this.c = DriverManager.getConnection("jdbc:mysql://localhost/busbooking", "root", "aks14");
+         } catch (SQLException var2) {
+            Logger.getLogger(booking.class.getName()).log(Level.SEVERE, (String)null, var2);
+         }
+      } catch (ClassNotFoundException var3) {
+         Logger.getLogger(booking.class.getName()).log(Level.SEVERE, (String)null, var3);
+      }
+
+   }
+
+   private void initComponents() {
+      this.jLabel1 = new JLabel();
+      this.jLabel2 = new JLabel();
+      this.jLabel3 = new JLabel();
+      this.jLabel4 = new JLabel();
+      this.t1 = new JTextField();
+      this.jLabel5 = new JLabel();
+      this.ca1 = new JCalendar();
+      this.jLabel6 = new JLabel();
+      this.jScrollPane1 = new JScrollPane();
+      this.t2 = new JTextArea();
+      this.jLabel7 = new JLabel();
+      this.jLabel8 = new JLabel();
+      this.t3 = new JTextField();
+      this.b3 = new JButton();
+      this.b2 = new JButton();
+      this.b1 = new JButton();
+      this.jLabel9 = new JLabel();
+      this.t = new JTextField();
+      this.c1 = new JComboBox();
+      this.c2 = new JComboBox();
+      this.c3 = new JComboBox();
+      this.setDefaultCloseOperation(3);
+      this.jLabel1.setFont(new Font("Times New Roman", 1, 36));
+      this.jLabel1.setText(" WELCOME TO BUS BOOKING SYSTEM");
+      this.jLabel2.setFont(new Font("Times New Roman", 1, 24));
+      this.jLabel2.setText("Source");
+      this.jLabel3.setFont(new Font("Times New Roman", 1, 24));
+      this.jLabel3.setText("Destination");
+      this.jLabel4.setFont(new Font("Times New Roman", 1, 24));
+      this.jLabel4.setText("No. of Passengers");
+      this.t1.setFont(new Font("Times New Roman", 1, 24));
+      this.jLabel5.setFont(new Font("Times New Roman", 1, 24));
+      this.jLabel5.setText("Time");
+      this.jLabel6.setFont(new Font("Times New Roman", 1, 24));
+      this.jLabel6.setText("Departure Date");
+      this.t2.setColumns(20);
+      this.t2.setFont(new Font("Times New Roman", 1, 18));
+      this.t2.setRows(5);
+      this.jScrollPane1.setViewportView(this.t2);
+      this.jLabel7.setFont(new Font("Times New Roman", 1, 24));
+      this.jLabel7.setText("Ticket Summary");
+      this.jLabel8.setFont(new Font("Times New Roman", 1, 24));
+      this.jLabel8.setText("Payble Amount");
+      this.t3.setFont(new Font("Times New Roman", 1, 24));
+      this.b3.setFont(new Font("Times New Roman", 1, 24));
+      this.b3.setText("BOOK");
+      this.b3.addActionListener(new booking$1(this));
+      this.b2.setFont(new Font("Times New Roman", 1, 24));
+      this.b2.setText("RESET");
+      this.b2.addActionListener(new booking$2(this));
+      this.b1.setFont(new Font("Times New Roman", 1, 24));
+      this.b1.setText("SUBMIT");
+      this.b1.addActionListener(new booking$3(this));
+      this.jLabel9.setFont(new Font("Times New Roman", 1, 24));
+      this.jLabel9.setText("Name of User");
+      this.t.setFont(new Font("Times New Roman", 1, 24));
+      this.c1.setFont(new Font("Times New Roman", 1, 24));
+      this.c1.setModel(new DefaultComboBoxModel(new String[]{"Pune", "Mumbai", "Nashik", "Delhi", "Nagpur", "Ahmednagar"}));
+      this.c2.setFont(new Font("Times New Roman", 1, 24));
+      this.c2.setModel(new DefaultComboBoxModel(new String[]{"Mumbai", "Pune", "Nashik", "Delhi", "Nagpur", "Ahmednagar"}));
+      this.c3.setFont(new Font("Times New Roman", 1, 24));
+      this.c3.setModel(new DefaultComboBoxModel(new String[]{"6:00 am", "8:00 am", "12:00 pm", "2:00 pm", "5:00 pm", "7:00 pm"}));
+      GroupLayout var1 = new GroupLayout(this.getContentPane());
+      this.getContentPane().setLayout(var1);
+      var1.setHorizontalGroup(var1.createParallelGroup(Alignment.LEADING).addGroup(var1.createSequentialGroup().addGroup(var1.createParallelGroup(Alignment.LEADING, false).addGroup(var1.createSequentialGroup().addGroup(var1.createParallelGroup(Alignment.TRAILING).addGroup(var1.createSequentialGroup().addGap(121, 121, 121).addGroup(var1.createParallelGroup(Alignment.TRAILING).addComponent(this.jLabel9).addGroup(var1.createParallelGroup(Alignment.TRAILING).addComponent(this.ca1, Alignment.LEADING, -1, -1, 32767).addGroup(var1.createSequentialGroup().addGap(93, 93, 93).addComponent(this.jLabel2).addGap(33, 33, 33).addGroup(var1.createParallelGroup(Alignment.LEADING).addComponent(this.t1, -2, 172, -2).addComponent(this.c1, -2, 171, -2)))))).addGroup(var1.createSequentialGroup().addContainerGap(-1, 32767).addGroup(var1.createParallelGroup(Alignment.TRAILING).addComponent(this.jLabel6).addComponent(this.jLabel4)).addGap(204, 204, 204))).addGroup(var1.createParallelGroup(Alignment.LEADING).addGroup(var1.createSequentialGroup().addGap(87, 87, 87).addGroup(var1.createParallelGroup(Alignment.LEADING).addGroup(var1.createSequentialGroup().addGroup(var1.createParallelGroup(Alignment.TRAILING).addComponent(this.jLabel5, -2, 63, -2).addComponent(this.jLabel3)).addGap(18, 18, 18).addGroup(var1.createParallelGroup(Alignment.LEADING).addComponent(this.c2, -2, -1, -2).addComponent(this.c3, -2, -1, -2))).addComponent(this.jLabel7).addComponent(this.jScrollPane1, -2, 379, -2))).addGroup(var1.createSequentialGroup().addGap(47, 47, 47).addComponent(this.t, -2, 170, -2)))).addGroup(Alignment.TRAILING, var1.createSequentialGroup().addContainerGap(-1, 32767).addComponent(this.t3, -2, 96, -2).addGap(280, 280, 280))).addGap(0, 154, 32767)).addGroup(var1.createSequentialGroup().addGroup(var1.createParallelGroup(Alignment.LEADING).addGroup(var1.createSequentialGroup().addGap(188, 188, 188).addComponent(this.jLabel1)).addGroup(var1.createSequentialGroup().addGap(392, 392, 392).addGroup(var1.createParallelGroup(Alignment.LEADING).addGroup(var1.createSequentialGroup().addGap(31, 31, 31).addComponent(this.b2).addGap(18, 18, 18).addComponent(this.b3)).addComponent(this.jLabel8))).addGroup(var1.createSequentialGroup().addGap(472, 472, 472).addComponent(this.b1))).addContainerGap(-1, 32767)));
+      var1.setVerticalGroup(var1.createParallelGroup(Alignment.LEADING).addGroup(var1.createSequentialGroup().addGap(14, 14, 14).addComponent(this.jLabel1).addGap(18, 18, 18).addGroup(var1.createParallelGroup(Alignment.BASELINE).addComponent(this.jLabel9).addComponent(this.t, -2, -1, -2)).addGroup(var1.createParallelGroup(Alignment.LEADING).addGroup(var1.createSequentialGroup().addPreferredGap(ComponentPlacement.RELATED).addGroup(var1.createParallelGroup(Alignment.LEADING, false).addGroup(var1.createSequentialGroup().addComponent(this.jLabel3).addGap(18, 18, 18)).addGroup(var1.createSequentialGroup().addComponent(this.c2).addGap(10, 10, 10))).addGroup(var1.createParallelGroup(Alignment.BASELINE).addComponent(this.jLabel5).addComponent(this.c3, -2, 32, -2)).addPreferredGap(ComponentPlacement.RELATED).addComponent(this.jLabel7).addPreferredGap(ComponentPlacement.RELATED).addComponent(this.jScrollPane1, -2, 225, -2).addGap(0, 0, 32767)).addGroup(var1.createSequentialGroup().addGap(9, 9, 9).addGroup(var1.createParallelGroup(Alignment.BASELINE).addComponent(this.jLabel2).addComponent(this.c1)).addPreferredGap(ComponentPlacement.RELATED).addGroup(var1.createParallelGroup(Alignment.BASELINE).addComponent(this.jLabel4).addComponent(this.t1, -2, -1, -2)).addPreferredGap(ComponentPlacement.UNRELATED).addComponent(this.jLabel6).addPreferredGap(ComponentPlacement.RELATED).addComponent(this.ca1, -2, 225, -2).addGap(19, 19, 19))).addComponent(this.b1).addGap(12, 12, 12).addGroup(var1.createParallelGroup(Alignment.BASELINE).addComponent(this.jLabel8).addComponent(this.t3, -2, -1, -2)).addGap(18, 18, 18).addGroup(var1.createParallelGroup(Alignment.BASELINE).addComponent(this.b2).addComponent(this.b3)).addGap(23, 23, 23)));
+      this.pack();
+   }
+
+   private void b1ActionPerformed(ActionEvent var1) {
+      String var2 = this.t.getText();
+      if (var2.equals("")) {
+         JOptionPane.showMessageDialog(this, "Please Enter User Name");
+      }
+
+      int var3 = Integer.parseInt(this.t1.getText());
+      short var4 = 200;
+      int var5 = var3 * var4;
+      String var6 = this.t.getText();
+      String var7 = (String)this.c1.getSelectedItem();
+      String var8 = (String)this.c2.getSelectedItem();
+      String var9 = this.t1.getText();
+      String var10 = (String)this.c3.getSelectedItem();
+      SimpleDateFormat var11 = new SimpleDateFormat("yyyy-MM-dd");
+      String var12 = var11.format(this.ca1.getDate());
+      if (var7.equals(var8)) {
+         JOptionPane.showMessageDialog(this, "Source and destination Cannot be Same");
+         this.t.setText((String)null);
+         this.t1.setText((String)null);
+         this.t2.setText((String)null);
+         this.t3.setText((String)null);
+         this.c1.setSelectedItem("Pune");
+         this.c2.setSelectedItem("Mumbai");
+         this.c3.setSelectedItem("Economy");
+      } else {
+         this.t3.setText(Integer.toString(var5));
+         String var13 = this.t3.getText();
+         this.t2.setText("*************************************\nName of User: " + var6 + "\nTO: " + var7 + "\nFrom: " + var8 + "\nNo of Passenger: " + var9 + "\nTime: " + var10 + "\nDate of Journey: " + var12 + "\nPayble Amount: " + var13 + "\n*************************************");
+      }
+
+   }
+
+   private void b2ActionPerformed(ActionEvent var1) {
+      this.t.setText((String)null);
+      this.t1.setText((String)null);
+      this.t2.setText((String)null);
+      this.t3.setText((String)null);
+      this.c1.setSelectedItem("Pune");
+      this.c2.setSelectedItem("Mumbai");
+      this.c3.setSelectedItem("Economy");
+   }
+
+   private void b3ActionPerformed(ActionEvent var1) {
+      try {
+         String var2 = this.t.getText();
+         String var3 = (String)this.c1.getSelectedItem();
+         String var4 = (String)this.c2.getSelectedItem();
+         String var5 = this.t1.getText();
+         String var6 = (String)this.c3.getSelectedItem();
+         SimpleDateFormat var7 = new SimpleDateFormat("yyyy-MM-dd");
+         String var8 = var7.format(this.ca1.getDate());
+         String var9 = this.t3.getText();
+         this.p = this.c.prepareStatement("insert into   book(User_Name,S_Source,destination,No_of_passenger,Time,DOJ,Paid_amt)values(?,?,?,?,?,?,?)");
+         this.p.setString(1, var2);
+         this.p.setString(2, var3);
+         this.p.setString(3, var4);
+         this.p.setString(4, var5);
+         this.p.setString(5, var6);
+         this.p.setString(6, var8);
+         this.p.setString(7, var9);
+         int var10 = this.p.executeUpdate();
+         if (var10 == 1) {
+            try {
+               try {
+                  FileWriter var11 = new FileWriter("BusBooking.txt", true);
+
+                  try {
+                     var11.append("\n\nName of User: " + var2 + "\nTO: " + var3 + "\nFrom: " + var4 + "\nNo of Passenger: " + var5 + "\nTime: " + var6 + "\nDate of Journey: " + var8 + "\nPayble Amount: " + var9);
+                     var11.write(System.getProperty("line.separator"));
+                     var11.close();
+                  } catch (Throwable var15) {
+                     try {
+                        var11.close();
+                     } catch (Throwable var14) {
+                        var15.addSuppressed(var14);
+                     }
+
+                     throw var15;
+                  }
+
+                  var11.close();
+               } catch (Exception var16) {
+                  JOptionPane.showMessageDialog(this, "Error: " + String.valueOf(var16));
+               }
+
+               JOptionPane.showMessageDialog(this, "Booking Successfull");
+               this.t.setText((String)null);
+               this.t1.setText((String)null);
+               this.t2.setText((String)null);
+               this.t3.setText((String)null);
+               this.c1.setSelectedItem("Pune");
+               this.c2.setSelectedItem("Mumbai");
+               this.c3.setSelectedItem("Economy");
+            } catch (HeadlessException var17) {
+               JOptionPane.showMessageDialog(this, "Error: " + String.valueOf(var17));
+            }
+         } else {
+            JOptionPane.showMessageDialog(this, "Something Wrong");
+         }
+      } catch (SQLException var18) {
+         Logger.getLogger(booking.class.getName()).log(Level.SEVERE, (String)null, var18);
+      }
+
+   }
+
+   public static void main(String[] var0) {
+      (new booking()).setVisible(true);
+   }
+}
